@@ -110,4 +110,10 @@ async function storeTx(numberOfTx, fileName) {
       }
     })
   }
+  
+  return new Promise(function (resole, reject) {
+    setTimeout(function() {
+       resole(null);
+    }, 1);
+  })
 }
