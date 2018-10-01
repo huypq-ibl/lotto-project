@@ -23,13 +23,11 @@ function makeKeyPair() {
   }
 }
 
-function submitUpdate(payload, privateKeyHex, cb) {
+function createBatchListBytes(payload, privateKeyHex, cb) {
   // Create signer
   const context = createContext('secp256k1')
   const privateKey = secp256k1.Secp256k1PrivateKey.fromHex(privateKeyHex)
   const signer = new Signer(context, privateKey)
-
-  //##############################################
 
   payload['Signer'] = signer.getPublicKey().asHex()
 
@@ -95,7 +93,7 @@ async function storeTx(numberOfTx, fileName) {
   var batchByte
   for (i = 0; i < numberOfTx; i++) {
     let keypair = makeKeyPair()
-    batchByte = submitUpdate(
+    batchByte = createBatchListBytes(
       {
         'Action': 'buy',
         'Value': rand(1, 45, 5)
