@@ -46,10 +46,11 @@ function processFile(inputFile) {
     })
 }
 
-async function postToServer(fileName, url) {
+async function postToServer(fileName, url, numberTxPerSec) {
     var batchList = await processFile(fileName);
-    
-    for (i = 0; i < batchList.length; i++) {
+    let n = (numberTxPerSec < batchList.length) ? numberTxPerSec : batchList.length;
+
+    for (i = 0; i < n; i++) {
       console.log("post " + i)
       postToValidator(
         bytebuffer.fromHex(batchList[i]).buffer,
