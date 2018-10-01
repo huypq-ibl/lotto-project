@@ -30,7 +30,7 @@ function processFile(inputFile) {
   
     rl.on('line', function (line) {
       result.push(line);
-      console.log(result.length);
+      // console.log(result.length);
       // console.log(line);
     });
   
@@ -51,7 +51,6 @@ async function postToServer(fileName, url, numberTxPerSec) {
     let n = (numberTxPerSec < batchList.length) ? numberTxPerSec : batchList.length;
 
     for (i = 0; i < n; i++) {
-      console.log("post " + i)
       postToValidator(
         bytebuffer.fromHex(batchList[i]).buffer,
         url

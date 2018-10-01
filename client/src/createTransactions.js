@@ -87,8 +87,6 @@ function rand(start, end, numbers) {
 }
 
 async function storeTx(numberOfTx, fileName) {
-  await fs.writeFile(fileName, '');
-
   let i = 0
   var batchByte
   for (i = 0; i < numberOfTx; i++) {
